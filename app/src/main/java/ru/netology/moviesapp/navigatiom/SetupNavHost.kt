@@ -5,6 +5,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import ru.netology.moviesapp.MainViewModel
+import ru.netology.moviesapp.screens.DetailsScreen
 import ru.netology.moviesapp.screens.MainScreen
 import ru.netology.moviesapp.screens.SplashScreen
 import ru.netology.moviesapp.utils.Constants
@@ -34,7 +35,8 @@ fun SetupNavHost(navController: NavHostController, viewModel: MainViewModel) {
             MainScreen(navController = navController, viewModel = viewModel)
 
         }
-        composable(route = Screens.Details.route){
+        composable(route = Screens.Details.route + "/{Id}"){backStackEntry ->
+            DetailsScreen(navController = navController, viewModel = viewModel, itemId = backStackEntry.arguments?.getString("Id") ?: "1")
 
         }
     }
